@@ -1,12 +1,15 @@
+// ShoppingList.js
 import React, { useState } from "react";
-import Item from "./Item";
+import Item from "./Item"; // Import the Item component
+// import Filter from "./Filter"; // Import the new Filter component
+
 
 function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  function handleCategoryChange(event) {
-    setSelectedCategory(event.target.value);
-  }
+  const handleCategoryChange = (newCategory) => {
+    setSelectedCategory(newCategory); // Update the selected category
+  };
 
   const itemsToDisplay = items.filter((item) => {
     if (selectedCategory === "All") return true;
@@ -16,14 +19,7 @@ function ShoppingList({ items }) {
 
   return (
     <div className="ShoppingList">
-      <div className="Filter">
-        <select name="filter" onChange={handleCategoryChange}>
-          <option value="All">Filter by category</option>
-          <option value="Produce">Produce</option>
-          <option value="Dairy">Dairy</option>
-          <option value="Dessert">Dessert</option>
-        </select>
-      </div>
+      {/* <Filter selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange} /> Use Filter component */}
       <ul className="Items">
         {itemsToDisplay.map((item) => (
           <Item key={item.id} name={item.name} category={item.category} />
